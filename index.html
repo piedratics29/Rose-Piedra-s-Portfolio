@@ -3,174 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piedra Singco | Portfolio</title>
+    <title>Rose Piedra Singco | Front-End Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --accent-color: #38bdf8;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --card-bg: #1e293b;
-            --input-bg: #0f172a;
+            --bg: #0b0f1a;
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --accent: #38bdf8;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+        /* --- Hero Section --- */
         header {
-            height: 90vh;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0b0f1a 100%);
         }
 
-        h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 0.5rem; }
-        .highlight { color: var(--accent-color); }
+        .hero-content h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; }
+        .hero-content p { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; font-size: 1.1rem; }
         
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
+        .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
 
-        section { margin-bottom: 6rem; }
-        h2 { border-left: 4px solid var(--accent-color); padding-left: 1rem; margin-bottom: 2.5rem; }
+        .btn-primary { background: var(--accent); color: var(--bg); }
+        .btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
+        .btn:hover { transform: translateY(-3px); opacity: 0.9; box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2); }
 
-        /* Logo Gallery Styles */
-        .gallery-grid {
+        /* --- Sections --- */
+        section { padding: 8rem 0; }
+        h2 { font-size: 2rem; margin-bottom: 3rem; display: flex; align-items: center; gap: 10px; }
+        h2::after { content: ""; height: 1px; flex: 1; background: var(--border); }
+
+        /* --- Skills --- */
+        .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
         }
 
-        .gallery-item {
+        .skill-card {
             background: var(--card-bg);
-            border-radius: 15px;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-card h3 { color: var(--accent); margin-bottom: 1rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; }
+        .skill-list li { background: rgba(56, 189, 248, 0.1); padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(56, 189, 248, 0.2); }
+
+        /* --- Experience --- */
+        .exp-item {
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+            border-left: 2px solid var(--accent);
+            position: relative;
+        }
+
+        .exp-item::before {
+            content: ""; width: 12px; height: 12px; background: var(--accent);
+            position: absolute; left: -7px; top: 5px; border-radius: 50%;
+        }
+
+        .exp-date { color: var(--accent); font-weight: 600; font-size: 0.9rem; }
+        .exp-company { font-size: 1.2rem; font-weight: 700; margin: 5px 0; }
+        .exp-desc { color: var(--text-secondary); list-style-position: inside; margin-top: 10px; }
+
+        /* --- Projects --- */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 16px;
             overflow: hidden;
-            border: 1px solid #334155;
-            transition: transform 0.3s ease;
+            border: 1px solid var(--border);
+            transition: 0.3s;
         }
+        .project-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .project-img { height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); }
+        .project-info { padding: 1.5rem; }
+        .project-tags { font-size: 0.75rem; color: var(--accent); margin-bottom: 0.5rem; display: block; }
+        .project-links { margin-top: 1.5rem; display: flex; gap: 15px; }
+        .project-links a { color: var(--text-primary); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
 
-        .gallery-item:hover { transform: scale(1.02); border-color: var(--accent-color); }
-
-        .gallery-img {
-            width: 100%;
-            height: 200px;
-            background: #2d3e50; /* Placeholder color */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-dim);
-            font-weight: bold;
-        }
-
-        .gallery-desc { padding: 1rem; text-align: center; font-size: 0.9rem; }
-
-        /* Contact Form Styles */
-        .contact-form {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 15px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group { margin-bottom: 1.5rem; }
+        /* --- Contact --- */
+        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-info div { margin-bottom: 1.5rem; display: flex; align-items: center; gap: 15px; }
         
-        label { display: block; margin-bottom: 0.5rem; color: var(--text-dim); }
-
+        form { display: flex; flex-direction: column; gap: 1rem; }
         input, textarea {
-            width: 100%;
-            padding: 0.8rem;
-            background: var(--input-bg);
-            border: 1px solid #334155;
-            color: white;
-            border-radius: 8px;
-            box-sizing: border-box;
+            padding: 1rem; background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 8px; color: white; outline: none;
         }
+        input:focus { border-color: var(--accent); }
 
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
+        footer { text-align: center; padding: 4rem; color: var(--text-secondary); border-top: 1px solid var(--border); }
+
+        @media (max-width: 768px) {
+            .contact-container { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.5rem; }
         }
-
-        .btn {
-            background: var(--accent-color);
-            color: var(--bg-color);
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .btn:hover { opacity: 0.9; }
-
-        footer { text-align: center; padding: 4rem; color: var(--text-dim); border-top: 1px solid #1e293b; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Hi, I'm <span class="highlight">Piedra Singco</span></h1>
-        <p style="font-size: 1.4rem; color: var(--text-dim);">Digital Artist & Web Developer</p>
-        <br>
-        <a href="#work" class="btn">Explore Portfolio</a>
+        <div class="hero-content container">
+            <h1>Rose <span class="highlight">Piedra Singco</span></h1>
+            <p>Front-End Developer with nearly 3 years of experience building responsive, interactive, and user-friendly web applications. Skilled in modern UI development and WordPress customization.</p>
+            <div class="btn-group">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#" class="btn btn-secondary">Download Resume</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
     </header>
 
     <div class="container">
         
-        <section id="work">
-            <h2>Design Showcase</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-img">TRAVELO</div>
-                    <div class="gallery-desc">Modern Travel Identity</div>
+        <section id="about">
+            <h2><i data-lucide="user"></i> About Me</h2>
+            <p>I specialize in bridging the gap between design and technology. With a Bachelor's in IT and hands-on experience in fast-paced environments, I've mastered the art of building maintainable codebases. I thrive on collaborating with designers to turn wireframes into pixel-perfect reality while ensuring APIs integrate seamlessly for dynamic user experiences.</p>
+        </section>
+
+        <section id="skills">
+            <h2><i data-lucide="code-2"></i> Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Frontend</h3>
+                    <ul class="skill-list">
+                        <li>HTML5</li><li>CSS3</li><li>JavaScript ES6+</li><li>jQuery</li><li>Bootstrap</li><li>Sass</li><li>Tailwind</li>
+                    </ul>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">CARITON</div>
-                    <div class="gallery-desc">Logistics & Branding</div>
+                <div class="skill-card">
+                    <h3>CMS & Tools</h3>
+                    <ul class="skill-list">
+                        <li>WordPress</li><li>Theme Customization</li><li>REST APIs</li><li>Git / GitHub</li>
+                    </ul>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">MAC BEAUTY</div>
-                    <div class="gallery-desc">Digital Marketing Assets</div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">ALLWOOD</div>
-                    <div class="gallery-desc">Carpentry & Craft Brand</div>
+                <div class="skill-card">
+                    <h3>Development</h3>
+                    <ul class="skill-list">
+                        <li>Responsive Design</li><li>Performance Optimization</li><li>Agile/Scrum</li><li>Problem Solving</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
+        <section id="experience">
+            <h2><i data-lucide="briefcase"></i> Work Experience</h2>
+            <div class="exp-item">
+                <span class="exp-date">2023 — 2025</span>
+                <div class="exp-company">Front-End Developer | Dinnox IT Solutions</div>
+                <ul class="exp-desc">
+                    <li>Built and maintained responsive websites and complex web applications.</li>
+                    <li>Converted UI/UX wireframes into functional, interactive interfaces.</li>
+                    <li>Implemented reusable component architectures to speed up development.</li>
+                    <li>Integrated REST APIs for real-time dynamic data rendering.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <span class="exp-date">Dec 2022 — Jun 2023</span>
+                <div class="exp-company">Intern Front-End Developer | Dinnox IT Solutions</div>
+                <ul class="exp-desc">
+                    <li>Developed core web pages using HTML, CSS, and JavaScript.</li>
+                    <li>Optimized website responsiveness across various device sizes.</li>
+                    <li>Ensured cross-browser compatibility and fixed UI bugs.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2><i data-lucide="layers"></i> Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-img">Project Preview</div>
+                    <div class="project-info">
+                        <span class="project-tags">WordPress • Custom CSS/JS</span>
+                        <h3>E-commerce Website</h3>
+                        <p>A fully customized online store with a focus on speed and user conversion.</p>
+                        <div class="project-links">
+                            <a href="#"><i data-lucide="github"></i> Repo</a>
+                            <a href="#"><i data-lucide="external-link"></i> Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">Project Preview</div>
+                    <div class="project-info">
+                        <span class="project-tags">JavaScript • API</span>
+                        <h3>API-based Web App</h3>
+                        <p>Real-time data dashboard fetching and displaying dynamic metrics via REST API.</p>
+                        <div class="project-links">
+                            <a href="#"><i data-lucide="github"></i> Repo</a>
+                            <a href="#"><i data-lucide="external-link"></i> Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2><i data-lucide="graduation-cap"></i> Education</h2>
+            <div class="exp-company">Bachelor of Science in Information Technology</div>
+            <p style="color: var(--accent);">Cebu Technological University | 2019 — 2023</p>
+        </section>
+
         <section id="contact">
-            <h2>Let's Collaborate</h2>
-            <div class="contact-form">
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="your@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Project Details</label>
-                        <textarea rows="5" placeholder="Tell me about your project..."></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+            <h2><i data-lucide="mail"></i> Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <p>I'm currently open to new opportunities and collaborations. Feel free to reach out!</p><br>
+                    <div><i data-lucide="phone" color="#38bdf8"></i> 0910 505 9081</div>
+                    <div><i data-lucide="mail" color="#38bdf8"></i> rosepiedrasingco123@gmail.com</div>
+                    <div><i data-lucide="map-pin" color="#38bdf8"></i> Cebu, Philippines</div>
+                </div>
+                <form>
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea rows="5" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
             </div>
         </section>
@@ -178,8 +259,12 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Piedra Singco. Shifting perspectives through design.</p>
+        <p>&copy; 2026 Rose Piedra Singco. Built with HTML, CSS, and JS.</p>
     </footer>
 
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>
