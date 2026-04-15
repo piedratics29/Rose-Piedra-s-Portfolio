@@ -19,7 +19,7 @@ export default function Contact() {
         </div>
         <div className="contact-card">
           <p className="label">Based</p>
-          <p>Ginatilan, Cebu, Philippines · Remote-friendly</p>
+          <p style={{ marginBottom: '0.75rem' }}>Ginatilan, Cebu, Philippines · Remote-friendly</p>
           <p className="label">Preferred Stack</p>
           <p>HTML · CSS · JS · SCSS · Bootstrap · WordPress · Django · Python</p>
         </div>
