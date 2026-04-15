@@ -19,9 +19,9 @@ export default function Contact() {
         </div>
         <div className="contact-card">
           <p className="label">Based</p>
-          <p>Cebu, Philippines · Remote-friendly</p>
+          <p>Ginatilan, Cebu, Philippines · Remote-friendly</p>
           <p className="label">Preferred Stack</p>
-          <p>React · JS · SCSS · Bootstrap · WordPress · Django</p>
+          <p>HTML · CSS · JS · SCSS · Bootstrap · WordPress · Django · Python</p>
         </div>
       </div>
     </SectionShell>
