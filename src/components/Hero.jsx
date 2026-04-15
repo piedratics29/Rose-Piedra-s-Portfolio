@@ -6,6 +6,8 @@ const container = {
 };
 
 export default function Hero() {
+  const profileImage = `${import.meta.env.BASE_URL}my_photo.jpg`;
+
   return (
     <section id="hero" className="section hero">
       <div className="container hero-grid">
@@ -17,7 +19,7 @@ export default function Hero() {
         >
           <div className="hero-head">
             <div className="avatar" aria-hidden="true">
-              <img src="/my_photo.jpg" alt="Rose Piedra Singco" className="avatar-img" />
+              <img src={profileImage} alt="Rose Piedra Singco" className="avatar-img" />
               {/* <span className="avatar-fallback">RP</span> */}
             </div>
             <div>
