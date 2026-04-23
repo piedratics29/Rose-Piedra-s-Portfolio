@@ -22,15 +22,18 @@ export default function Navbar() {
       <div className="container nav">
         <div className="brand">Rose Piedra Singco</div>
         <button
+          type="button"
           className="nav-toggle"
           aria-label="Toggle navigation"
+          aria-expanded={open}
+          aria-controls="site-nav"
           onClick={() => setOpen((v) => !v)}
         >
           <span />
           <span />
           <span />
         </button>
-        <nav className={`nav-links ${open ? 'show' : ''}`}>
+        <nav id="site-nav" className={`nav-links ${open ? 'show' : ''}`}>
           {links.map((link) => (
             <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
               {link.label}
