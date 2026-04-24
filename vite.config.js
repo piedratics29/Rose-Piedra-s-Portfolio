@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig({
-  // Required for GitHub Pages: set base to repo name
-  base: '/Rose-Piedra-s-Portfolio/',
+const githubPagesBase = '/Rose-Piedra-s-Portfolio/';
+
+export default defineConfig(() => ({
+  // Vercel serves from the domain root, while GitHub Pages needs the repo subpath.
+  base: process.env.GITHUB_ACTIONS ? githubPagesBase : '/',
   plugins: [react()],
-});
+}));
